@@ -6,6 +6,10 @@
 <body>
 <h1>Welcome to Index PAGE!</h1>
 
+<footer>
+    <div sec:authorize="isAuthenticated()">
+    <a th:href="@{/logout}">Logout</a></div>
+</footer>
 
 </body>
 </html>

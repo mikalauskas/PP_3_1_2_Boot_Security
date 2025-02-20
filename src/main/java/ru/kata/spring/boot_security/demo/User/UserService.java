@@ -1,8 +1,11 @@
 package ru.kata.spring.boot_security.demo.User;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.kata.spring.boot_security.demo.Role.Role;
+import ru.kata.spring.boot_security.demo.Role.RoleRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +17,17 @@ public class UserService {
    @Autowired
    private UserRepository userRepository;
 
+   @Autowired
+   private RoleRepository roleRepository;
+
+   @Autowired
+   private PasswordEncoder passwordEncoder;
+
    @Transactional
    public void add(User user) {
+      Optional<Role> userRole = roleRepository.findByName("ROLE_USER");
+      userRole.ifPresent(user::setRole);
+      user.setPassword(passwordEncoder.encode(user.getPassword()));
       userRepository.save(user);
    }
 
@@ -42,5 +54,8 @@ public class UserService {
    public void deleteByUsername(String username) {
       userRepository.deleteByUsername(username);
    }
+
+   @Transactional
+   public List<Role> findRolesByUsername(String username) { return userRepository.getRolesByUsername(username); }
 
 }

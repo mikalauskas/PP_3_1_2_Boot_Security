@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/admin")
 public class UserController {
 
     UserService userService;
@@ -55,5 +55,10 @@ public class UserController {
     public String delete(@RequestParam String username) {
         userService.deleteByUsername(username);
         return "redirect:/admin";
+    }
+
+    @PostMapping("/logout")
+    public String logout() {
+        return "redirect:/";
     }
 }

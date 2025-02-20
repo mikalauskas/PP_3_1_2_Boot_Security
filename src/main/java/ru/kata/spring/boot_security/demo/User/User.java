@@ -1,16 +1,16 @@
 package ru.kata.spring.boot_security.demo.User;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Role;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.kata.spring.boot_security.demo.Role.Role;
+
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 public class User implements UserDetails {
 
    @Id
@@ -25,10 +25,13 @@ public class User implements UserDetails {
    private String firstname;
    private String lastname;
 
-   @ElementCollection(fetch = FetchType.EAGER)
-   @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-   @Column(name = "role")
-   private Set<String> roles = new HashSet<>();
+   @ManyToMany(fetch = FetchType.EAGER)
+   @JoinTable(
+           name = "user_roles",
+           joinColumns = @JoinColumn(name = "user_id"),
+           inverseJoinColumns = @JoinColumn(name = "role_id")
+   )
+   private Set<Role> roles = new HashSet<>();
 
    public User() {}
 
@@ -64,12 +67,14 @@ public class User implements UserDetails {
       this.lastname = lastname;
    }
 
-   public Set<String> getRoles() {
+   public Set<Role> getRoles() {
       return roles;
    }
 
-   public void setRoles(Set<String> roles) {
-      this.roles = roles;
+   public void setRoles(Set<Role> roles) { this.roles = roles; }
+
+   public void setRole(Role role) {
+      roles.add(role);
    }
 
    @Override
@@ -85,7 +90,7 @@ public class User implements UserDetails {
 
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
-      return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+      return roles;
    }
 
    @Override

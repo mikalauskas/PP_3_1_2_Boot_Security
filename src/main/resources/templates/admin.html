@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Admin page</title>
@@ -19,6 +19,7 @@
     <th>Firstname</th>
     <th>Lastname</th>
     <th>Email</th>
+    <th>Roles</th>
     <th>Action</th>
   </tr>
   </thead>
@@ -26,7 +27,7 @@
   <th:block th:each="user : ${users}">
     <tr>
       <td th:text="${user.id}"></td>
-      <form th:id="${user.id}" th:action="@{/users/edit}" method="post">
+      <form th:id="${user.id}" th:action="@{/admin/edit}" method="post">
         <input type="hidden" name="id" th:value="${user.id}"/>
         <td>
           <input type="text" name="username" th:value="${user.username}"
@@ -44,10 +45,13 @@
           <input type="email" name="email" th:value="${user.email}"
                  th:placeholder="${user.email}"/>
         </td>
+        <td>
+          <span th:text="${user.roles}">title</span>
+        </td>
       </form>
       <td>
         <button type="submit" th:form="${user.id}">Edit</button>
-        <form th:action="@{users/delete}" method="post">
+        <form th:action="@{admin/delete}" method="post">
           <input type="hidden" name="username" th:value="${user.username}">
           <button type="submit" onclick="submitParentForm(event)">Remove user</button>
         </form>
@@ -56,7 +60,7 @@
   </th:block>
   </tbody>
 </table>
-<form th:action="@{users/add}" method="post">
+<form th:action="@{admin/add}" method="post">
   <p>
     <label for="username">Username</label>
     <input id="username" type="text" name="username"/>
@@ -85,5 +89,6 @@
     event.target.closest('form').submit();
   }
 </script>
+<footer><a th:href="@{/logout}">Logout</a></footer>
 </body>
 </html>
