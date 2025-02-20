@@ -21,6 +21,7 @@ public class UserController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("users", userService.listUsers());
+        model.addAttribute("pageTitle", "Admin Panel");
         return "admin";
     }
 

@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <title th:text="${pageTitle} ?: 'Default Title'"></title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
 </head>
 <body>
 <th:block th:fragment="header">
     <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a th:href="@{/logout}">Logout</a></li>
-            </ul>
+        <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">username with roles: ADMIN USER</a>
+                <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
+            </div>
         </nav>
     </header>
 </th:block>
