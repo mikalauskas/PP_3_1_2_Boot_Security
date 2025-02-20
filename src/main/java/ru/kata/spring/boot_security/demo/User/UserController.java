@@ -22,6 +22,12 @@ public class UserController {
         return "admin";
     }
 
+    @GetMapping("/edit")
+    public String showUsers(Model model) {
+        model.addAttribute("users", userService.listUsers());
+        return "edit";
+    }
+
     @PostMapping("/add")
     public String create(@RequestParam String username,
                          @RequestParam String password,
