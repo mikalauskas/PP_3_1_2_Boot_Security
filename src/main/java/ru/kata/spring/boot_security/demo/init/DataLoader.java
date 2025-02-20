@@ -1,12 +1,12 @@
-package ru.kata.spring.boot_security.demo.CommandLine;
+package ru.kata.spring.boot_security.demo.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import ru.kata.spring.boot_security.demo.Role.Role;
-import ru.kata.spring.boot_security.demo.Role.RoleRepository;
-import ru.kata.spring.boot_security.demo.User.User;
-import ru.kata.spring.boot_security.demo.User.UserService;
+import ru.kata.spring.boot_security.demo.model.Role;
+import ru.kata.spring.boot_security.demo.repository.RoleRepository;
+import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.util.Optional;
 

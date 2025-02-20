@@ -1,8 +1,7 @@
-package ru.kata.spring.boot_security.demo.Role;
+package ru.kata.spring.boot_security.demo.model;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
-import ru.kata.spring.boot_security.demo.User.User;
 
 import java.util.HashSet;
 import java.util.Set;
