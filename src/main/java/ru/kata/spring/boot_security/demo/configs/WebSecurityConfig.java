@@ -47,9 +47,9 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepo) {
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
         return username -> {
-            Optional<User> user = userRepo.findByUsername(username);
+            Optional<User> user = userRepository.findByUsername(username);
             if (user.isPresent()) {
                 return user.get();
             }
