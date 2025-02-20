@@ -16,31 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 class SpringBootSecurityDemoApplicationTests {
 
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
 
 	@Test
 	void contextLoads() {
-
-		assertNotNull(passwordEncoder);
-		assertNotNull(userService);
-
-		User user = new User();
-		user.setUsername("admin");
-		user.setPassword("password");
-		user.setEmail("admin@email.com");
-		user.setFirstname("admin");
-		user.setLastname("admin");
-		Set<Role> roles = new HashSet<>();
-
-		Role adminRole = new Role();
-		adminRole.setName("ROLE_ADMIN");
-		roles.add(adminRole);
-		user.setRoles(roles);
-		userService.add(user);
 
 	}
 

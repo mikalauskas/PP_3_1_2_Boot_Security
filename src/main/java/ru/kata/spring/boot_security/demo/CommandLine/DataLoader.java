@@ -8,9 +8,7 @@ import ru.kata.spring.boot_security.demo.Role.RoleRepository;
 import ru.kata.spring.boot_security.demo.User.User;
 import ru.kata.spring.boot_security.demo.User.UserService;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
