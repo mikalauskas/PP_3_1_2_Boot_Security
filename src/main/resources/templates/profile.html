@@ -1,0 +1,53 @@
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container-fluid row">
+    <div class="col-12 col-md-2 d-flex flex-column flex-shrink-0">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item" th:if="${currentUser != null and currentUser.authorities.?[#this.authority == 'ADMIN'].size() > 0}">
+                <a href="/admin" class="nav-link link-dark">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="/admin"></use></svg>
+                    Admin
+                </a>
+            </li>
+            <li>
+                <a href="/profile" class="nav-link active" aria-current="page">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="/profile"></use></svg>
+                    User
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col">
+        <h2 th:text="${pageTitle} ?: 'Default Title'"></h2>
+        <div class="card text-center">
+            <div class="card-header text-start">
+                <h3>About user</h3>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.firstname}"></td>
+                        <td th:text="${user.lastname}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${#strings.setJoin(user.roles, ' ')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:insert="~{fragments/footer}"></th:block>

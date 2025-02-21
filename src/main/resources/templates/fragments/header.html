@@ -6,8 +6,8 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
 </head>
 <body>
-<th:block th:fragment="header">
-    <header>
+<th:block th:fragment="header" th:if="${currentUser}">
+    <header class="mb-3">
         <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand">

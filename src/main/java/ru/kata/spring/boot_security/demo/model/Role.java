@@ -51,6 +51,4 @@ public class Role implements GrantedAuthority {
     public String toString() {
         return name;
     }
-
-    public Set<User> getUsers() { return users; }
 }

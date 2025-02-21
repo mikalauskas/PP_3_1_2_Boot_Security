@@ -44,15 +44,16 @@ public class UserService {
    }
 
    @Transactional
-   public void deleteByUsername(String username) {
-      userRepository.deleteByUsername(username);
+   public void deleteById(Long id) {
+      userRepository.deleteById(id);
    }
-
-   @Transactional
-   public List<Role> findRolesByUsername(String username) { return userRepository.getRolesByUsername(username); }
 
    @Transactional
    public void update(User user) {
       userRepository.save(user);
+   }
+
+   public User getByUsername(String username) {
+      return userRepository.findByUsername(username).orElse(null);
    }
 }

@@ -48,5 +48,14 @@ public class DataLoader implements CommandLineRunner {
         admin.setRole(roleAdmin.orElse(null));
         admin.setRole(roleUser.orElse(null));
         userService.add(admin);
+
+        User user = new User();
+        user.setUsername("user");
+        user.setPassword("user");
+        user.setFirstname("user");
+        user.setLastname("user");
+        user.setEmail("user@user.com");
+        user.setRole(roleUser.orElse(null));
+        userService.add(user);
     }
 }
