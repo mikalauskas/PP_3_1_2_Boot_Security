@@ -1,0 +1,51 @@
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container-fluid row">
+    <div class="col-2"></div>
+    <div class="col">
+        <h2>Admin Panel</h2>
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin}">Users
+                            table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="true" th:href="@{/admin/new}">New
+                            User</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-header text-start">
+                <h3>All users</h3>
+            </div>
+            <div class="card-body text-center fw-bold">
+                <form th:action="@{/admin/add}" method="post">
+                    <label for="username" class="form-label">Username</label>
+                    <input id="username" type="text" name="username" class="form-control mb-3"/>
+
+                    <label for="firstname" class="form-label">Firstname</label>
+                    <input id="firstname" type="text" name="firstname" class="form-control mb-3"/>
+
+                    <label for="lastname" class="form-label">Lastname</label>
+                    <input id="lastname" type="text" name="lastname" class="form-control mb-3"/>
+
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" type="email" name="email" class="form-control mb-3"/>
+
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" type="password" name="password" class="form-control mb-3"/>
+
+                    <label for="roles" class="form-label">Roles</label>
+                    <select id="roles" name="roles" class="form-control" multiple>
+                        <option th:each="role : ${roles}" th:value="${role}"
+                                th:text="${role}"></option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:insert="~{fragments/footer}"></th:block>

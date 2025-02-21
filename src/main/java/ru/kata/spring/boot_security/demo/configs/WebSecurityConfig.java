@@ -29,8 +29,8 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/index").permitAll()
-                        .requestMatchers("/admin", "/admin/**").hasAnyAuthority("ROLE_ADMIN")
-                        .requestMatchers("/user").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers("/admin", "/admin/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/user").hasAnyAuthority("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin

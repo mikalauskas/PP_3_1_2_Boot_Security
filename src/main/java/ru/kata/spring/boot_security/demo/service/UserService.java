@@ -33,15 +33,6 @@ public class UserService {
       userRepository.save(user);
    }
 
-   @Transactional
-   public void update(User user) {
-      findById(user.getId()).ifPresent(existingUser -> {
-         existingUser.setFirstname(user.getFirstname());
-         existingUser.setLastname(user.getLastname());
-         existingUser.setEmail(user.getEmail());
-      });
-   }
-
    @Transactional(readOnly = true)
    public Optional<User> findById(Long id) {
       return userRepository.findById(id);
@@ -60,4 +51,8 @@ public class UserService {
    @Transactional
    public List<Role> findRolesByUsername(String username) { return userRepository.getRolesByUsername(username); }
 
+   @Transactional
+   public void update(User user) {
+      userRepository.save(user);
+   }
 }

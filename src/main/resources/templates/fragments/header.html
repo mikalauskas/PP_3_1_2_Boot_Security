@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
 <head>
     <title th:text="${pageTitle} ?: 'Default Title'"></title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
@@ -9,7 +10,10 @@
     <header>
         <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand">username with roles: ADMIN USER</a>
+                <a class="navbar-brand">
+                    <span class="fw-bold" th:text="${currentUser.username}"></span> with
+                    roles:
+                    <span th:text="${#strings.setJoin(currentUser.roles, ' ')}"></span></a>
                 <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
             </div>
         </nav>

@@ -22,18 +22,18 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Optional<Role> roleAdmin = roleRepository.findByName("ROLE_ADMIN");
-        Optional<Role> roleUser = roleRepository.findByName("ROLE_USER");
+        Optional<Role> roleAdmin = roleRepository.findByName("ADMIN");
+        Optional<Role> roleUser = roleRepository.findByName("USER");
 
         if (roleAdmin.isEmpty()) {
             Role adminRole = new Role();
-            adminRole.setName("ROLE_ADMIN");
+            adminRole.setName("ADMIN");
             roleRepository.save(adminRole);
         }
 
         if (roleUser.isEmpty()) {
             Role userRole = new Role();
-            userRole.setName("ROLE_USER");
+            userRole.setName("USER");
             roleRepository.save(userRole);
         }
 
@@ -43,8 +43,10 @@ public class DataLoader implements CommandLineRunner {
         admin.setFirstname("admin");
         admin.setLastname("admin");
         admin.setEmail("admin@admin.com");
-        roleAdmin = roleRepository.findByName("ROLE_ADMIN");
+        roleAdmin = roleRepository.findByName("ADMIN");
+        roleUser = roleRepository.findByName("USER");
         admin.setRole(roleAdmin.orElse(null));
+        admin.setRole(roleUser.orElse(null));
         userService.add(admin);
     }
 }
